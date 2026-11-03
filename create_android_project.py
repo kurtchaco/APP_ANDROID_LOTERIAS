@@ -11,7 +11,30 @@ for d in dirs:
     os.makedirs(d, exist_ok=True)
 
 with open(f"{project_dir}/settings.gradle", "w") as f:
-    f.write("rootProject.name = 'LoteriasApp'\ninclude ':app'\n")
+    f.write("""pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.10.0'
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = 'LoteriasApp'
+include ':app'
+""")
+
+with open(f"{project_dir}/gradle.properties", "w") as f:
+    f.write("android.useAndroidX=true\n")
+
 
 with open(f"{project_dir}/build.gradle", "w") as f:
     f.write("""buildscript {

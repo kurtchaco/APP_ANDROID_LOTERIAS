@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="5dp"
+    android:gravity="center_vertical">
+
+    <!-- Left Column (Pos 1..10) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingEnd="12dp">
+
+        <TextView
+            android:id="@+id/tvPosLeft"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:text="1º"
+            android:textColor="@color/text_muted"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNumLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="6939"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:letterSpacing="0.05" />
+    </LinearLayout>
+
+    <!-- Center Divider -->
+    <View
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        android:background="@color/border_subtle" />
+
+    <!-- Right Column (Pos 11..20) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp">
+
+        <TextView
+            android:id="@+id/tvPosRight"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:text="11º"
+            android:textColor="@color/text_muted"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNumRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="4484"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:letterSpacing="0.05" />
+    </LinearLayout>
+
+</LinearLayout>

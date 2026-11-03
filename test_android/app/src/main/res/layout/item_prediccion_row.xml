@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="7dp">
+
+    <!-- Position #1..7 -->
+    <TextView
+        android:id="@+id/tvPredRowPos"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="@color/text_muted"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- 4-digit number -->
+    <TextView
+        android:id="@+id/tvPredRowNumero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="6345"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05" />
+
+    <!-- 2-digit termination badge -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvPredRow2Cifras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45"
+            android:textColor="@color/primary_blue_light"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:background="@drawable/bg_pill_unselected" />
+    </LinearLayout>
+
+    <!-- Base Sorteo -->
+    <TextView
+        android:id="@+id/tvPredRowBase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="Vespertina"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:gravity="center" />
+
+    <!-- Probability badge -->
+    <TextView
+        android:id="@+id/tvPredRowProb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="31,1%"
+        android:textColor="@color/accent_gold"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:gravity="end" />
+
+</LinearLayout>

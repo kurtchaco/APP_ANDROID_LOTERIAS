@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_reducidos"
+        android:icon="@drawable/ic_reducidos"
+        android:title="7 Reducidos" />
+    <item
+        android:id="@+id/nav_sorteos"
+        android:icon="@drawable/ic_sorteos"
+        android:title="Sorteos" />
+    <item
+        android:id="@+id/nav_predicciones"
+        android:icon="@drawable/ic_predicciones"
+        android:title="Predicciones" />
+    <item
+        android:id="@+id/nav_aciertos"
+        android:icon="@drawable/ic_aciertos"
+        android:title="Aciertos" />
+    <item
+        android:id="@+id/nav_efectividad"
+        android:icon="@drawable/ic_efectividad"
+        android:title="Efectividad" />
+</menu>

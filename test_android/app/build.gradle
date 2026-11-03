@@ -34,4 +34,8 @@ dependencies {
     // Retrofit & Gson para consumir la API JSON
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    
+    // Jsoup para parsing HTML directo del sitio web
+    implementation 'org.jsoup:jsoup:1.17.2'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 }

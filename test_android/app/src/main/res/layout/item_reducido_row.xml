@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/border_subtle"
+    app:cardBackgroundColor="@color/bg_card_secondary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Rank Badge -->
+            <TextView
+                android:id="@+id/tvReducidoRank"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:text="#1"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@drawable/bg_pill_selected"
+                android:layout_marginEnd="12dp" />
+
+            <!-- 4-digit Number -->
+            <TextView
+                android:id="@+id/tvReducidoNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7965"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:textColor="@color/accent_gold"
+                android:layout_marginEnd="12dp" />
+
+            <!-- Ambo & Centena -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvReducidoAmbo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ambo: 65"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/bg_pill_unselected"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="3dp"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:id="@+id/tvReducidoCentena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="C: 965"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/bg_pill_unselected"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <!-- Score / Rank Score -->
+            <TextView
+                android:id="@+id/tvReducidoScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="110 pts"
+                android:textSize="11sp"
+                android:textColor="@color/text_muted" />
+        </LinearLayout>
+
+        <!-- Hit Result Badge (When drawn and hit) -->
+        <TextView
+            android:id="@+id/tvReducidoHitBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:text="🏆 ¡Pleno 4C! (+3.500x)"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            android:background="@drawable/bg_badge_gold"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+

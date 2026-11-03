@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds Dark Theme -->
+    <color name="bg_main">#0B0F19</color>
+    <color name="bg_card">#131B2E</color>
+    <color name="bg_card_secondary">#1E293B</color>
+    <color name="bg_card_highlight">#1E2E4A</color>
+    <color name="bg_bottom_nav">#0D1322</color>
+
+    <!-- Borders -->
+    <color name="border_subtle">#22324B</color>
+    <color name="border_light">#334768</color>
+
+    <!-- Accents -->
+    <color name="primary_blue">#0D6EFD</color>
+    <color name="primary_blue_light">#3B82F6</color>
+    <color name="primary_blue_subtle">#1A2B4C</color>
+    <color name="accent_gold">#F59E0B</color>
+    <color name="accent_gold_subtle">#33250A</color>
+    <color name="accent_green">#10B981</color>
+    <color name="accent_green_subtle">#0B2B1E</color>
+    <color name="accent_red">#EF4444</color>
+    <color name="accent_red_subtle">#3B1414</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
