@@ -93,6 +93,52 @@
                 android:paddingTop="12dp"
                 android:paddingBottom="24dp">
 
+                <!-- Banner Modo Histórico -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardBannerHistorico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/accent_gold"
+                    app:cardBackgroundColor="@color/accent_gold_subtle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvBannerHistorico"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📅 Viendo pronóstico histórico. Toca para volver a hoy."
+                            android:textColor="@color/accent_gold"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnVolverAHoy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Volver a hoy"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_badge_gold"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <!-- Fechas Card: Generado vs Sorteos evaluados -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardFechasReducidos"

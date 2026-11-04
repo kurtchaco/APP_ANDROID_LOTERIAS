@@ -412,6 +412,26 @@ object LoteriasRepository {
                                                 )
                                             }
                                         }
+                                        val selL = mutableListOf<ReducidoNumero>()
+                                        val sArr = l.optJSONArray("seleccionados")
+                                        if (sArr != null) {
+                                            for (k in 0 until sArr.length()) {
+                                                val ss = sArr.getJSONObject(k)
+                                                selL.add(
+                                                    ReducidoNumero(
+                                                        rank = ss.optInt("rank", k + 1),
+                                                        numero = ss.optString("num_str", "0000"),
+                                                        ambo = ss.optString("two_digits", ""),
+                                                        centena = ss.optString("three_digits", ""),
+                                                        score = ss.optString("score", ""),
+                                                        hit4 = ss.optBoolean("hit_4", false),
+                                                        hit3 = ss.optBoolean("hit_3", false),
+                                                        hit2 = ss.optBoolean("hit_2", false),
+                                                        turnosAcertados = ss.optString("turnos_acertados_str", "")
+                                                    )
+                                                )
+                                            }
+                                        }
                                         lotList.add(
                                             ReducidoHistorialLoteria(
                                                 ciudad = l.optString("ciudad", ""),
@@ -421,7 +441,8 @@ object LoteriasRepository {
                                                 aciertosCentena3 = l.optInt("aciertos_centena_3", 0),
                                                 aciertosPleno4 = l.optInt("aciertos_pleno_4", 0),
                                                 turnosJugados = l.optInt("turnos_jugados", 0),
-                                                turnos = turnosL
+                                                turnos = turnosL,
+                                                seleccionados = selL
                                             )
                                         )
                                     }

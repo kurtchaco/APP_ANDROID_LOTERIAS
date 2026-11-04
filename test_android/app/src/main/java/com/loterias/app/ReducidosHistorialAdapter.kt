@@ -8,14 +8,17 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class ReducidosHistorialAdapter(
-    private var items: List<ReducidoDiaHistorial>
+    private var items: List<ReducidoDiaHistorial>,
+    private val onDayClicked: ((ReducidoDiaHistorial, ReducidoHistorialLoteria?) -> Unit)? = null
 ) : RecyclerView.Adapter<ReducidosHistorialAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvFechas: TextView = view.findViewById(R.id.tvHistorialFechas)
         val tvTurnosJugados: TextView = view.findViewById(R.id.tvHistorialTurnosJugados)
         val tvBadge: TextView = view.findViewById(R.id.tvHistorialBadge)
+        val tvNumerosChips: TextView = view.findViewById(R.id.tvHistorialNumerosChips)
         val tvExtracto: TextView = view.findViewById(R.id.tvHistorialTurnosExtracto)
+        val btnVerDiaEnPrincipal: TextView = view.findViewById(R.id.btnVerDiaEnPrincipal)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -55,6 +58,22 @@ class ReducidosHistorialAdapter(
             holder.tvBadge.setTextColor(ContextCompat.getColor(context, R.color.text_muted))
         }
 
+        // Render los 7 números predichos de este día
+        if (primerLot != null && primerLot.seleccionados.isNotEmpty()) {
+            val numStr = primerLot.seleccionados.joinToString(" • ") { s ->
+                val hitTag = when {
+                    s.hit4 -> " 🏆"
+                    s.hit3 -> " ⭐"
+                    s.hit2 -> " 🎯"
+                    else -> ""
+                }
+                "#${s.rank}: ${s.numero}$hitTag"
+            }
+            holder.tvNumerosChips.text = numStr
+        } else {
+            holder.tvNumerosChips.text = "Toca para cargar los 7 números predichos de este día"
+        }
+
         // Build Turnos Extract String
         val extractSb = StringBuilder()
         if (item.loterias.isNotEmpty()) {
@@ -79,6 +98,13 @@ class ReducidosHistorialAdapter(
             extractSb.append("Esperando publicación de sorteos...")
         }
         holder.tvExtracto.text = extractSb.toString()
+
+        // Click listeners to load this day in main view
+        val clickAction = View.OnClickListener {
+            onDayClicked?.invoke(item, primerLot)
+        }
+        holder.itemView.setOnClickListener(clickAction)
+        holder.btnVerDiaEnPrincipal.setOnClickListener(clickAction)
     }
 
     override fun getItemCount(): Int = items.size
@@ -88,4 +114,3 @@ class ReducidosHistorialAdapter(
         notifyDataSetChanged()
     }
 }
-

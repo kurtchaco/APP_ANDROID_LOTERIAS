@@ -119,7 +119,8 @@ data class ReducidoHistorialLoteria(
     val aciertosCentena3: Int,
     val aciertosPleno4: Int,
     val turnosJugados: Int,
-    val turnos: List<ReducidoHistorialTurno>
+    val turnos: List<ReducidoHistorialTurno>,
+    val seleccionados: List<ReducidoNumero> = emptyList()
 )
 
 data class ReducidoDiaHistorial(

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardHistorialItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="14dp"
     app:cardElevation="0dp"
     app:strokeWidth="1dp"
@@ -61,7 +65,38 @@
                 android:paddingVertical="4dp" />
         </LinearLayout>
 
+        <!-- Los 7 números predichos de este día -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✨ Los 7 Números Predichos:"
+            android:textColor="@color/accent_gold"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvHistorialNumerosChips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#1: 7965 (🎯) • #2: 7377 • #3: 8595 • #4: 8623 • #5: 9887 • #6: 9946 • #7: 3840"
+            android:textColor="@color/text_primary"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:background="@color/bg_card"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp" />
+
         <!-- Turnos extract details -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🎲 Sorteos oficiales:"
+            android:textColor="@color/text_muted"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp" />
+
         <TextView
             android:id="@+id/tvHistorialTurnosExtracto"
             android:layout_width="match_parent"
@@ -71,8 +106,21 @@
             android:fontFamily="monospace"
             android:textSize="11sp"
             android:background="@color/bg_card"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Action: Ver en detalle -->
+        <TextView
+            android:id="@+id/btnVerDiaEnPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="6dp"
+            android:background="@drawable/bg_pill_unselected"
+            android:text="👆 Toca para cargar este día en la pantalla principal"
+            android:textColor="@color/primary_blue_light"
+            android:textSize="11sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
-

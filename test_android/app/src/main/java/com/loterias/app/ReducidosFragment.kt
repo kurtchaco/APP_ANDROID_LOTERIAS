@@ -7,19 +7,26 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.card.MaterialCardView
 import kotlin.concurrent.thread
 
 class ReducidosFragment : Fragment() {
 
     private var currentCiudad = "Jujuy"
+    private var activeData: ReducidosData? = null
 
     private lateinit var btnRedLoteriaJujuy: TextView
     private lateinit var btnRedLoteriaCiudad: TextView
     private lateinit var btnRedLoteriaProvincia: TextView
+
+    private lateinit var cardBannerHistorico: MaterialCardView
+    private lateinit var tvBannerHistorico: TextView
+    private lateinit var btnVolverAHoy: TextView
 
     private lateinit var tvFechaGeneracion: TextView
     private lateinit var tvFechaDestino: TextView
@@ -40,6 +47,7 @@ class ReducidosFragment : Fragment() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var scrollView: NestedScrollView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +59,10 @@ class ReducidosFragment : Fragment() {
         btnRedLoteriaJujuy = view.findViewById(R.id.btnRedLoteriaJujuy)
         btnRedLoteriaCiudad = view.findViewById(R.id.btnRedLoteriaCiudad)
         btnRedLoteriaProvincia = view.findViewById(R.id.btnRedLoteriaProvincia)
+
+        cardBannerHistorico = view.findViewById(R.id.cardBannerHistorico)
+        tvBannerHistorico = view.findViewById(R.id.tvBannerHistorico)
+        btnVolverAHoy = view.findViewById(R.id.btnVolverAHoy)
 
         tvFechaGeneracion = view.findViewById(R.id.tvFechaGeneracion)
         tvFechaDestino = view.findViewById(R.id.tvFechaDestino)
@@ -68,12 +80,23 @@ class ReducidosFragment : Fragment() {
         progressBar = view.findViewById(R.id.progressBarReducidos)
         swipeRefresh = view.findViewById(R.id.swipeRefreshReducidos)
 
+        // Find parent NestedScrollView
+        var parentView = rvReducidosNumeros.parent
+        while (parentView != null && parentView !is NestedScrollView) {
+            parentView = parentView.parent
+        }
+        if (parentView is NestedScrollView) {
+            scrollView = parentView
+        }
+
         // Setup RecyclerViews
         reducidosAdapter = ReducidosAdapter(emptyList())
         rvReducidosNumeros.layoutManager = LinearLayoutManager(requireContext())
         rvReducidosNumeros.adapter = reducidosAdapter
 
-        historialAdapter = ReducidosHistorialAdapter(emptyList())
+        historialAdapter = ReducidosHistorialAdapter(emptyList()) { dia, loteria ->
+            mostrarDiaHistorico(dia, loteria)
+        }
         rvReducidosHistorial.layoutManager = LinearLayoutManager(requireContext())
         rvReducidosHistorial.adapter = historialAdapter
 
@@ -81,6 +104,13 @@ class ReducidosFragment : Fragment() {
         btnRedLoteriaJujuy.setOnClickListener { switchLoteria("Jujuy") }
         btnRedLoteriaCiudad.setOnClickListener { switchLoteria("Ciudad") }
         btnRedLoteriaProvincia.setOnClickListener { switchLoteria("Buenos Aires") }
+
+        // Banner Action: Volver a hoy
+        val volverAction = View.OnClickListener {
+            restaurarDiaActivo()
+        }
+        cardBannerHistorico.setOnClickListener(volverAction)
+        btnVolverAHoy.setOnClickListener(volverAction)
 
         swipeRefresh.setColorSchemeResources(R.color.accent_gold, R.color.primary_blue)
         swipeRefresh.setOnRefreshListener {
@@ -96,6 +126,7 @@ class ReducidosFragment : Fragment() {
         if (currentCiudad == ciudad) return
         currentCiudad = ciudad
         updateLoteriaButtonsUI()
+        cardBannerHistorico.visibility = View.GONE
         loadReducidos(showLoading = true)
     }
 
@@ -135,51 +166,9 @@ class ReducidosFragment : Fragment() {
                     progressBar.visibility = View.GONE
                     swipeRefresh.isRefreshing = false
 
-                    // Fechas
-                    tvFechaGeneracion.text = "${data.diaGeneracion} ${data.fechaGeneracion}".trim()
-                    tvFechaDestino.text = "${data.diaDestino} ${data.fechaDestino}".trim()
-                    tvAvisoDomingo.visibility = if (data.avisoDomingo) View.VISIBLE else View.GONE
-
-                    // Legend
-                    val diaDestinoStr = if (data.diaDestino.isNotEmpty()) "${data.diaDestino} ${data.fechaDestino}" else "día siguiente"
-                    tvLegendSieteNumeros.text = "✨ Los 7 números para jugar el $diaDestinoStr:"
-
-                    // Control del día (En vivo)
-                    val turnosJugados = data.turnosJugados
-                    val aciertosCab = data.aciertosCabeza
-                    if (turnosJugados == 0) {
-                        tvResumenAciertosHoy.text = "⏳ Esperando sorteos (0/5)"
-                        tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
-                        tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
-                    } else if (aciertosCab > 0) {
-                        tvResumenAciertosHoy.text = "🎯 $aciertosCab Acierto(s) ($turnosJugados/5)"
-                        tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_badge_success)
-                        tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-                    } else {
-                        tvResumenAciertosHoy.text = "0 aciertos ($turnosJugados/5)"
-                        tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
-                        tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_muted))
-                    }
-
-                    // Turnos chips summary
-                    if (data.turnosSorteo.isNotEmpty()) {
-                        val turnosStr = data.turnosSorteo.joinToString(" • ") { t ->
-                            val mark = when {
-                                t.hit4 -> " 🏆"
-                                t.hit3 -> " ⭐ 3C"
-                                t.hit2 -> " 🎯"
-                                else -> ""
-                            }
-                            val cabeza = if (t.publicado && t.cabeza != null) t.cabeza else "⏳"
-                            "${t.turno}: $cabeza$mark"
-                        }
-                        tvTurnosDetalleHoy.text = turnosStr
-                    } else {
-                        tvTurnosDetalleHoy.text = "Previa: ⏳ • Primera: ⏳ • Matutina: ⏳ • Vespertina: ⏳ • Nocturna: ⏳"
-                    }
-
-                    // Actualizar los 7 números
-                    reducidosAdapter.updateData(data.seleccionados)
+                    activeData = data
+                    cardBannerHistorico.visibility = View.GONE
+                    renderDataEnVistaPrincipal(data)
 
                     // KPIs 10 Días
                     tvKpiAmbos.text = data.historialAciertos2.toString()
@@ -198,5 +187,114 @@ class ReducidosFragment : Fragment() {
             }
         }
     }
-}
 
+    private fun renderDataEnVistaPrincipal(data: ReducidosData) {
+        // Fechas
+        tvFechaGeneracion.text = "${data.diaGeneracion} ${data.fechaGeneracion}".trim()
+        tvFechaDestino.text = "${data.diaDestino} ${data.fechaDestino}".trim()
+        tvAvisoDomingo.visibility = if (data.avisoDomingo) View.VISIBLE else View.GONE
+
+        // Legend
+        val diaDestinoStr = if (data.diaDestino.isNotEmpty()) "${data.diaDestino} ${data.fechaDestino}" else "día siguiente"
+        tvLegendSieteNumeros.text = "✨ Los 7 números para jugar el $diaDestinoStr:"
+
+        // Control del día (En vivo)
+        val turnosJugados = data.turnosJugados
+        val aciertosCab = data.aciertosCabeza
+        if (turnosJugados == 0) {
+            tvResumenAciertosHoy.text = "⏳ Esperando sorteos (0/5)"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
+        } else if (aciertosCab > 0) {
+            tvResumenAciertosHoy.text = "🎯 $aciertosCab Acierto(s) ($turnosJugados/5)"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_badge_success)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        } else {
+            tvResumenAciertosHoy.text = "0 aciertos ($turnosJugados/5)"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_muted))
+        }
+
+        // Turnos chips summary
+        if (data.turnosSorteo.isNotEmpty()) {
+            val turnosStr = data.turnosSorteo.joinToString(" • ") { t ->
+                val mark = when {
+                    t.hit4 -> " 🏆"
+                    t.hit3 -> " ⭐ 3C"
+                    t.hit2 -> " 🎯"
+                    else -> ""
+                }
+                val cabeza = if (t.publicado && t.cabeza != null) t.cabeza else "⏳"
+                "${t.turno}: $cabeza$mark"
+            }
+            tvTurnosDetalleHoy.text = turnosStr
+        } else {
+            tvTurnosDetalleHoy.text = "Previa: ⏳ • Primera: ⏳ • Matutina: ⏳ • Vespertina: ⏳ • Nocturna: ⏳"
+        }
+
+        // Actualizar los 7 números
+        reducidosAdapter.updateData(data.seleccionados)
+    }
+
+    private fun mostrarDiaHistorico(dia: ReducidoDiaHistorial, loteriaOpt: ReducidoHistorialLoteria?) {
+        val loteria = loteriaOpt ?: dia.loterias.firstOrNull {
+            it.ciudad.equals(currentCiudad, ignoreCase = true)
+        } ?: dia.loterias.firstOrNull() ?: return
+
+        cardBannerHistorico.visibility = View.VISIBLE
+        tvBannerHistorico.text = "📅 Histórico: Generado ${dia.diaGeneracion} ${dia.fechaGeneracion} ➔ Sorteos: ${loteria.diaDestino} ${loteria.fechaDestino}"
+
+        tvFechaGeneracion.text = "${dia.diaGeneracion} ${dia.fechaGeneracion}".trim()
+        tvFechaDestino.text = "${loteria.diaDestino} ${loteria.fechaDestino}".trim()
+        tvAvisoDomingo.visibility = View.GONE
+
+        tvLegendSieteNumeros.text = "✨ Los 7 números jugados el ${loteria.diaDestino} ${loteria.fechaDestino}:"
+
+        // Resumen aciertos
+        if (loteria.turnosJugados == 0) {
+            tvResumenAciertosHoy.text = "⏳ Sorteos aún no disputados"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
+        } else if (loteria.aciertosCabeza > 0) {
+            tvResumenAciertosHoy.text = "🎯 ${loteria.aciertosCabeza} Acierto(s) (${loteria.turnosJugados}/5)"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_badge_success)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        } else {
+            tvResumenAciertosHoy.text = "0 aciertos (${loteria.turnosJugados}/5)"
+            tvResumenAciertosHoy.setBackgroundResource(R.drawable.bg_pill_unselected)
+            tvResumenAciertosHoy.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_muted))
+        }
+
+        // Turnos extract
+        if (loteria.turnos.isNotEmpty()) {
+            val turnosStr = loteria.turnos.joinToString(" • ") { t ->
+                val mark = when {
+                    t.hit4 -> " 🏆"
+                    t.hit3 -> " ⭐ 3C"
+                    t.acerto -> " 🎯"
+                    else -> ""
+                }
+                val cabeza = if (t.cabeza.isNotEmpty()) t.cabeza else "⏳"
+                "${t.turno}: $cabeza$mark"
+            }
+            tvTurnosDetalleHoy.text = turnosStr
+        }
+
+        // Actualizar números con los números de ese día
+        if (loteria.seleccionados.isNotEmpty()) {
+            reducidosAdapter.updateData(loteria.seleccionados)
+        }
+
+        // Scroll suave hacia arriba
+        if (::scrollView.isInitialized) {
+            scrollView.smoothScrollTo(0, 0)
+        }
+    }
+
+    private fun restaurarDiaActivo() {
+        cardBannerHistorico.visibility = View.GONE
+        activeData?.let {
+            renderDataEnVistaPrincipal(it)
+        }
+    }
+}
