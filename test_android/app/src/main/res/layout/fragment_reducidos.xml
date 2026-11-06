@@ -272,6 +272,172 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Card Táctil Expandible: ¿Cómo funciona la reducción? -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardExplicacionReducidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/border_subtle"
+                    app:cardBackgroundColor="@color/bg_card">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <!-- Cabecera Táctil del Card -->
+                        <LinearLayout
+                            android:id="@+id/layoutHeaderExplicacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="💡"
+                                android:textSize="18sp"
+                                android:layout_marginEnd="8dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="¿Cómo funcionan Los 7 Reducidos?"
+                                    android:textColor="@color/accent_gold"
+                                    android:textStyle="bold"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/tvSubtituloExplicacion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Toca para ver cómo optimiza tu jugada (-80%)"
+                                    android:textColor="@color/text_secondary"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvBadgeExpandir"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ver ▾"
+                                android:textColor="@color/accent_gold"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:background="@drawable/bg_pill_unselected"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="4dp" />
+                        </LinearLayout>
+
+                        <!-- Contenedor Desplegable con la Explicación -->
+                        <LinearLayout
+                            android:id="@+id/layoutContenidoExplicacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:layout_marginTop="12dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/border_subtle"
+                                android:layout_marginBottom="10dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1. De 35 números a solo 7 (-80% costo):"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="2dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cada día se generan 7 números para los 5 turnos (35 números). El algoritmo selecciona los 7 números con mayor convergencia matemática para ahorrar un 80% del presupuesto manteniendo altas chances a la cabeza."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="2. Sistema de Puntuación (Score pts):"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="2dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• +35 pts si el ambo coincide en 2 o más turnos distintos.\n• +25 pts si está en maduración óptima de atraso (12 a 45 sorteos sin salir).\n• +10 pts si viene en racha positiva reciente.\n• Garantiza 7 ambos 100% distintos."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="3. Cómo jugar y cobrar premios:"
+                                android:textColor="@color/text_primary"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="2dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="• Pleno 4 Cifras: paga +3.500x a la cabeza.\n• 3 Cifras: paga +500x a la cabeza.\n• Ambo (2 cifras): paga +70x a la cabeza o primeros 5 premios."
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:layout_marginBottom="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:id="@+id/btnAgrandarModal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="🔍 Agrandar pantalla completa"
+                                    android:textColor="@color/accent_gold"
+                                    android:textStyle="bold"
+                                    android:textSize="11sp" />
+
+                                <TextView
+                                    android:id="@+id/btnContraerExplicacion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Contraer ▲"
+                                    android:textColor="@color/text_muted"
+                                    android:textSize="11sp"
+                                    android:padding="4dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <!-- Header de los 7 números -->
                 <TextView
                     android:id="@+id/tvLegendSieteNumeros"

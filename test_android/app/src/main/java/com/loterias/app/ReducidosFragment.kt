@@ -35,6 +35,14 @@ class ReducidosFragment : Fragment() {
     private lateinit var tvTurnosDetalleHoy: TextView
     private lateinit var tvLegendSieteNumeros: TextView
 
+    // Card Explicación Expandible
+    private lateinit var cardExplicacionReducidos: MaterialCardView
+    private lateinit var tvBadgeExpandir: TextView
+    private lateinit var tvSubtituloExplicacion: TextView
+    private lateinit var layoutContenidoExplicacion: View
+    private lateinit var btnAgrandarModal: TextView
+    private lateinit var btnContraerExplicacion: TextView
+
     private lateinit var tvKpiAmbos: TextView
     private lateinit var tvKpiCentenas: TextView
     private lateinit var tvKpiPlenos: TextView
@@ -87,6 +95,24 @@ class ReducidosFragment : Fragment() {
         }
         if (parentView is NestedScrollView) {
             scrollView = parentView
+        }
+
+        // Card Explicación Expandible
+        cardExplicacionReducidos = view.findViewById(R.id.cardExplicacionReducidos)
+        tvBadgeExpandir = view.findViewById(R.id.tvBadgeExpandir)
+        tvSubtituloExplicacion = view.findViewById(R.id.tvSubtituloExplicacion)
+        layoutContenidoExplicacion = view.findViewById(R.id.layoutContenidoExplicacion)
+        btnAgrandarModal = view.findViewById(R.id.btnAgrandarModal)
+        btnContraerExplicacion = view.findViewById(R.id.btnContraerExplicacion)
+
+        val toggleAction = View.OnClickListener {
+            toggleExplicacionCard()
+        }
+        cardExplicacionReducidos.setOnClickListener(toggleAction)
+        btnContraerExplicacion.setOnClickListener(toggleAction)
+
+        btnAgrandarModal.setOnClickListener {
+            mostrarModalExplicacionAgrandada()
         }
 
         // Setup RecyclerViews
@@ -144,6 +170,36 @@ class ReducidosFragment : Fragment() {
 
         btnRedLoteriaProvincia.setBackgroundResource(if (currentCiudad == "Buenos Aires") selectedBg else unselectedBg)
         btnRedLoteriaProvincia.setTextColor(if (currentCiudad == "Buenos Aires") white else muted)
+    }
+
+    private fun toggleExplicacionCard() {
+        if (layoutContenidoExplicacion.visibility == View.VISIBLE) {
+            layoutContenidoExplicacion.visibility = View.GONE
+            tvBadgeExpandir.text = "Ver ▾"
+            tvSubtituloExplicacion.text = "Toca para ver cómo optimiza tu jugada (-80%)"
+        } else {
+            layoutContenidoExplicacion.visibility = View.VISIBLE
+            tvBadgeExpandir.text = "Contraer ▴"
+            tvSubtituloExplicacion.text = "Explicación activa (toca para contraer)"
+        }
+    }
+
+    private fun mostrarModalExplicacionAgrandada() {
+        try {
+            val context = requireContext()
+            val dialog = com.google.android.material.bottomsheet.BottomSheetDialog(context)
+            val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_explicacion_reducidos, null)
+
+            val btnCerrar = dialogView.findViewById<TextView>(R.id.btnCerrarDialogExplicacion)
+            btnCerrar?.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.setContentView(dialogView)
+            dialog.show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun refreshData() {

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/bg_main"
+    android:padding="20dp">
+
+    <!-- Handle barra superior de arrastre -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@color/border_light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💡"
+            android:textSize="24sp"
+            android:layout_marginEnd="10dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Cómo Funcionan Los 7 Reducidos?"
+                android:textColor="@color/accent_gold"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guía completa del algoritmo de optimización"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border_subtle"
+        android:layout_marginBottom="14dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="500dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Banner Ahorro 80% -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/accent_gold"
+                app:cardBackgroundColor="@color/accent_gold_subtle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚡ Ahorro Directo del 80% de Capital"
+                        android:textColor="@color/accent_gold"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cada día se calculan 7 pronósticos a 4 cifras para cada uno de los 5 turnos (35 números por lotería). Jugar 35 boletas es costoso. La reducción selecciona quirúrgicamente los 7 números con mayor convergencia matemática, logrando un ahorro del 80% manteniendo altas probabilidades a la cabeza."
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4 Pasos del Algoritmo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚙️ Los 4 Pasos del Algoritmo:"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Paso 1 (Población Base): Se toman los 35 números emitidos para los 5 turnos del día.\n• Paso 2 (Consenso Inter-Turnos): Si 2 o más turnos coinciden en el ambo, suma +35 puntos.\n• Paso 3 (Atraso y Racha): +25 pts por maduración óptima (12 a 45 sorteos) y +10 pts por racha reciente.\n• Paso 4 (Filtro de Cobertura): Garantiza 7 ambos 100% distintos y máximo 2 por decena."
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Cómo Jugar y Auditoría -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/border_subtle"
+                app:cardBackgroundColor="@color/bg_card_secondary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎯 Premios y Auditoría Transparente"
+                        android:textColor="@color/primary_blue_light"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🏆 Pleno 4 Cifras: Paga +3.500x a la cabeza.\n⭐ 3 Cifras (Centena): Paga +500x a la cabeza.\n🎯 Ambo (2 Cifras): Paga +70x a la cabeza o primeros premios.\n\n🛡️ Control Diario: Al día siguiente, a medida que se sortean los turnos oficiales, el sistema compara y audita públicamente los aciertos."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:lineSpacingExtra="3dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botón Cerrar -->
+            <TextView
+                android:id="@+id/btnCerrarDialogExplicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Entendido, Volver"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:background="@drawable/bg_badge_gold"
+                android:paddingVertical="12dp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+
