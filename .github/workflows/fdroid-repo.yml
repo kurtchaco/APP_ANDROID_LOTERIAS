@@ -1,0 +1,63 @@
+name: Generate F-Droid Repository
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy-fdroid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x test_android/gradlew
+
+      - name: Build Android APK
+        run: cd test_android && ./gradlew assembleDebug --no-daemon
+
+      - name: Install F-Droid Server Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fdroidserver
+
+      - name: Generate F-Droid Repository Structure & Index
+        run: |
+          mkdir -p fdroid_site/fdroid/repo
+          mkdir -p fdroid_site/metadata
+          cp fdroid_config/config.yml fdroid_site/config.yml
+          cp fdroid_config/keystore.p12 fdroid_site/keystore.p12
+          cp fdroid_config/icon.png fdroid_site/icon.png
+          cp fdroid_config/com.loterias.app.yml fdroid_site/metadata/
+          cp fdroid_config/index.html fdroid_site/index.html
+          cp test_android/app/build/outputs/apk/debug/app-debug.apk fdroid_site/fdroid/repo/loterias.apk
+
+          cd fdroid_site
+          fdroid update --create-metadata
+
+          # Limpiar el archivo de keystore privado del sitio público
+          rm -f keystore.p12
+
+      - name: Deploy to GitHub Pages (gh-pages branch)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./fdroid_site
+          publish_branch: gh-pages
+          force_orphan: true

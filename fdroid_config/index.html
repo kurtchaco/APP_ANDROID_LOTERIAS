@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal Oficial F-Droid - Loterías y Quinielas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0B0F19;
+            --bg-card: #131B2E;
+            --accent-gold: #F59E0B;
+            --accent-gold-hover: #D97706;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --border-subtle: #22324B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+        .container {
+            max-width: 580px;
+            width: 100%;
+            background: linear-gradient(145deg, #131B2E, #0F172A);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 36px 28px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
+            margin-bottom: 20px;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+        }
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #FFF, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        .badge-repo {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 999px;
+            padding: 4px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: #000;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 14px;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -5px rgba(245, 158, 11, 0.6);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 24px;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .qr-box {
+            background: #FFF;
+            padding: 12px;
+            border-radius: 16px;
+            display: inline-block;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .qr-box img {
+            display: block;
+            width: 160px;
+            height: 160px;
+        }
+        .qr-label {
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            margin-bottom: 20px;
+        }
+        .repo-url-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .repo-url-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .repo-url-text {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            word-break: break-all;
+            user-select: all;
+        }
+        .steps {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .steps strong { color: var(--text-primary); }
+        .steps ol { padding-left: 20px; }
+        .footer {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="icon.png" alt="Logo Loterías" class="app-icon">
+        <div class="badge-repo">📦 Repositorio Privado F-Droid</div>
+        <h1>Loterías y Quinielas</h1>
+        <p class="subtitle">Canal oficial de actualizaciones automáticas para Android. Recibe mejoras y nuevos sorteos sin depender de Google Play Store.</p>
+
+        <!-- Botón Deep Link para abrir directamente F-Droid -->
+        <a href="fdroidrepo://kurtchaco.github.io/APP_ANDROID_LOTERIAS/fdroid/repo?fingerprint=DE3A95A81CA89922AFE619CA272AE19006057E6F1995CB1804DA617D2C19737A" class="btn-main">
+            <span>📲 Añadir Repositorio a F-Droid</span>
+        </a>
+
+        <!-- Descarga directa de APK -->
+        <a href="fdroid/repo/loterias.apk" class="btn-secondary">
+            <span>⬇️ O Descargar APK Directamente</span>
+        </a>
+
+        <!-- Código QR para escanear con la cámara o F-Droid -->
+        <div class="qr-box">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=fdroidrepo%3A%2F%2Fkurtchaco.github.io%2FAPP_ANDROID_LOTERIAS%2Ffdroid%2Frepo%3Ffingerprint%3DDE3A95A81CA89922AFE619CA272AE19006057E6F1995CB1804DA617D2C19737A" alt="QR F-Droid">
+        </div>
+        <div class="qr-label">📱 Escanea con tu celular para agregar el repositorio a F-Droid</div>
+
+        <!-- URL manual para copiar -->
+        <div class="repo-url-card">
+            <div class="repo-url-label">Dirección Manual del Repositorio:</div>
+            <div class="repo-url-text">https://kurtchaco.github.io/APP_ANDROID_LOTERIAS/fdroid/repo</div>
+        </div>
+
+        <!-- Instrucciones paso a paso -->
+        <div class="steps">
+            <strong>Cómo activarlo en tu celular:</strong>
+            <ol>
+                <li>Abre la app de <strong>F-Droid</strong> en tu teléfono.</li>
+                <li>Ve a <strong>Ajustes ➔ Repositorios</strong> y toca el botón <strong><code>+</code></strong>.</li>
+                <li>Pega la URL de arriba (o escanea el QR).</li>
+                <li>¡Listo! Tu app se actualizará automáticamente con cada nueva versión.</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            © YLLW®. Todos los derechos reservados.
+        </div>
+    </div>
+
+</body>
+</html>
