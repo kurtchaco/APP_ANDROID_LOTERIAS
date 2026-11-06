@@ -1,4 +1,4 @@
-repo_url: "https://kurtchaco.github.io/APP_ANDROID_LOTERIAS/fdroid/repo"
+repo_url: "https://kurtchaco.github.io/APP_ANDROID_LOTERIAS/repo"
 repo_name: "Loterías y Quinielas"
 repo_icon: "icon.png"
 repo_description: "Canal oficial y privado de actualizaciones automáticas para la aplicación Loterías y Quinielas."
@@ -7,3 +7,4 @@ keystore: "keystore.p12"
 keystorepass: "kurt_loterias_fdroid_2026"
 keypass: "kurt_loterias_fdroid_2026"
 repo_keyalias: "repo"
+
