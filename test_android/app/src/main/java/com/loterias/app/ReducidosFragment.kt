@@ -34,6 +34,7 @@ class ReducidosFragment : Fragment() {
     private lateinit var tvResumenAciertosHoy: TextView
     private lateinit var tvTurnosDetalleHoy: TextView
     private lateinit var tvLegendSieteNumeros: TextView
+    private lateinit var btnToggleLupaNumeros: TextView
 
     // Card Explicación Expandible
     private lateinit var cardExplicacionReducidos: MaterialCardView
@@ -78,6 +79,7 @@ class ReducidosFragment : Fragment() {
         tvResumenAciertosHoy = view.findViewById(R.id.tvResumenAciertosHoy)
         tvTurnosDetalleHoy = view.findViewById(R.id.tvTurnosDetalleHoy)
         tvLegendSieteNumeros = view.findViewById(R.id.tvLegendSieteNumeros)
+        btnToggleLupaNumeros = view.findViewById(R.id.btnToggleLupaNumeros)
 
         tvKpiAmbos = view.findViewById(R.id.tvKpiAmbos)
         tvKpiCentenas = view.findViewById(R.id.tvKpiCentenas)
@@ -119,6 +121,21 @@ class ReducidosFragment : Fragment() {
         reducidosAdapter = ReducidosAdapter(emptyList())
         rvReducidosNumeros.layoutManager = LinearLayoutManager(requireContext())
         rvReducidosNumeros.adapter = reducidosAdapter
+
+        btnToggleLupaNumeros.setOnClickListener {
+            val active = reducidosAdapter.toggleLupaMode()
+            if (active) {
+                btnToggleLupaNumeros.text = "🔍 Lupa Activa"
+                btnToggleLupaNumeros.setBackgroundResource(R.drawable.bg_badge_success)
+                btnToggleLupaNumeros.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                tvTurnosDetalleHoy.textSize = 16f
+            } else {
+                btnToggleLupaNumeros.text = "🔍 Lupa A++"
+                btnToggleLupaNumeros.setBackgroundResource(R.drawable.bg_badge_gold)
+                btnToggleLupaNumeros.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                tvTurnosDetalleHoy.textSize = 14f
+            }
+        }
 
         historialAdapter = ReducidosHistorialAdapter(emptyList()) { dia, loteria ->
             mostrarDiaHistorico(dia, loteria)

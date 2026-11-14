@@ -161,14 +161,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginBottom="4dp">
+                            android:layout_marginBottom="6dp">
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="⚙️ Generado:"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textColor="@color/text_primary"
+                                android:textSize="14sp" />
                             <TextView
                                 android:id="@+id/tvFechaGeneracion"
                                 android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                                 android:textColor="@color/text_primary"
                                 android:fontFamily="monospace"
                                 android:textStyle="bold"
-                                android:textSize="12sp" />
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -189,8 +189,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="🎲 Sorteos evaluados:"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="12sp" />
+                                android:textColor="@color/text_primary"
+                                android:textSize="14sp" />
                             <TextView
                                 android:id="@+id/tvFechaDestino"
                                 android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
                                 android:textColor="@color/accent_gold"
                                 android:fontFamily="monospace"
                                 android:textStyle="bold"
-                                android:textSize="12sp" />
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <TextView
@@ -209,7 +209,8 @@
                             android:layout_marginTop="6dp"
                             android:text="ℹ️ Ciudad y Bs As no sortean domingos ➔ Se evalúa con sorteos del Lunes"
                             android:textColor="@color/primary_blue_light"
-                            android:textSize="11sp"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
                             android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -230,7 +231,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="14dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -246,18 +247,18 @@
                                 android:text="🛡️ Control de Sorteos del Día"
                                 android:textColor="@color/text_primary"
                                 android:textStyle="bold"
-                                android:textSize="13sp" />
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:id="@+id/tvResumenAciertosHoy"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="🎯 0 aciertos (0/5)"
-                                android:textColor="@color/text_secondary"
+                                android:textColor="@color/text_primary"
                                 android:background="@drawable/bg_pill_unselected"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="3dp"
-                                android:textSize="11sp"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="4dp"
+                                android:textSize="13sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -266,9 +267,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Previa: ⏳ • Primera: ⏳ • Matutina: ⏳ • Vespertina: ⏳ • Nocturna: ⏳"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="@color/text_primary"
                             android:fontFamily="monospace"
-                            android:textSize="11sp" />
+                            android:lineSpacingExtra="4dp"
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -304,7 +306,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="💡"
-                                android:textSize="18sp"
+                                android:textSize="20sp"
                                 android:layout_marginEnd="8dp" />
 
                             <LinearLayout
@@ -319,15 +321,15 @@
                                     android:text="¿Cómo funcionan Los 7 Reducidos?"
                                     android:textColor="@color/accent_gold"
                                     android:textStyle="bold"
-                                    android:textSize="13sp" />
+                                    android:textSize="15sp" />
 
                                 <TextView
                                     android:id="@+id/tvSubtituloExplicacion"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Toca para ver cómo optimiza tu jugada (-80%)"
-                                    android:textColor="@color/text_secondary"
-                                    android:textSize="11sp" />
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="13sp" />
                             </LinearLayout>
 
                             <TextView
@@ -337,10 +339,10 @@
                                 android:text="Ver ▾"
                                 android:textColor="@color/accent_gold"
                                 android:textStyle="bold"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:background="@drawable/bg_pill_unselected"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="4dp" />
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="5dp" />
                         </LinearLayout>
 
                         <!-- Contenedor Desplegable con la Explicación -->
@@ -364,16 +366,17 @@
                                 android:text="1. De 35 números a solo 7 (-80% costo):"
                                 android:textColor="@color/text_primary"
                                 android:textStyle="bold"
-                                android:textSize="12sp"
-                                android:layout_marginBottom="2dp" />
+                                android:textSize="15sp"
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Cada día se generan 7 números para los 5 turnos (35 números). El algoritmo selecciona los 7 números con mayor convergencia matemática para ahorrar un 80% del presupuesto manteniendo altas chances a la cabeza."
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp"
-                                android:layout_marginBottom="8dp" />
+                                android:textColor="@color/text_primary"
+                                android:lineSpacingExtra="4dp"
+                                android:textSize="14sp"
+                                android:layout_marginBottom="10dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -381,16 +384,17 @@
                                 android:text="2. Sistema de Puntuación (Score pts):"
                                 android:textColor="@color/text_primary"
                                 android:textStyle="bold"
-                                android:textSize="12sp"
-                                android:layout_marginBottom="2dp" />
+                                android:textSize="15sp"
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="• +35 pts si el ambo coincide en 2 o más turnos distintos.\n• +25 pts si está en maduración óptima de atraso (12 a 45 sorteos sin salir).\n• +10 pts si viene en racha positiva reciente.\n• Garantiza 7 ambos 100% distintos."
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp"
-                                android:layout_marginBottom="8dp" />
+                                android:textColor="@color/text_primary"
+                                android:lineSpacingExtra="4dp"
+                                android:textSize="14sp"
+                                android:layout_marginBottom="10dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -398,15 +402,16 @@
                                 android:text="3. Cómo jugar y cobrar premios:"
                                 android:textColor="@color/text_primary"
                                 android:textStyle="bold"
-                                android:textSize="12sp"
-                                android:layout_marginBottom="2dp" />
+                                android:textSize="15sp"
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="• Pleno 4 Cifras: paga +3.500x a la cabeza.\n• 3 Cifras: paga +500x a la cabeza.\n• Ambo (2 cifras): paga +70x a la cabeza o primeros 5 premios."
-                                android:textColor="@color/text_secondary"
-                                android:textSize="11sp"
+                                android:textColor="@color/text_primary"
+                                android:lineSpacingExtra="4dp"
+                                android:textSize="14sp"
                                 android:layout_marginBottom="12dp" />
 
                             <LinearLayout
@@ -423,31 +428,52 @@
                                     android:text="🔍 Agrandar pantalla completa"
                                     android:textColor="@color/accent_gold"
                                     android:textStyle="bold"
-                                    android:textSize="11sp" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/btnContraerExplicacion"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Contraer ▲"
-                                    android:textColor="@color/text_muted"
-                                    android:textSize="11sp"
-                                    android:padding="4dp" />
+                                    android:textColor="@color/text_secondary"
+                                    android:textSize="13sp"
+                                    android:padding="6dp" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Header de los 7 números -->
-                <TextView
-                    android:id="@+id/tvLegendSieteNumeros"
+                <!-- Header de los 7 números + Botón Lupa -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="✨ Los 7 números para jugar el Martes 03/11/2026:"
-                    android:textColor="@color/accent_gold"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/tvLegendSieteNumeros"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="✨ Los 7 números para jugar:"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnToggleLupaNumeros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="🔍 Lupa A++"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_badge_gold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp" />
+                </LinearLayout>
 
                 <!-- Lista de los 7 Números -->
                 <androidx.recyclerview.widget.RecyclerView
@@ -465,7 +491,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="📊 Registro Histórico (Últimos 10 Días)"
                     android:textColor="@color/text_primary"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <!-- Métricas KPIs 10 Días -->
@@ -481,21 +507,22 @@
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:background="@color/bg_card"
-                        android:padding="8dp"
+                        android:padding="10dp"
                         android:layout_marginEnd="4dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ambos (+70x)"
-                            android:textColor="@color/text_muted"
-                            android:textSize="10sp" />
+                            android:textColor="@color/text_secondary"
+                            android:textStyle="bold"
+                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/tvKpiAmbos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="@color/accent_green"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -505,21 +532,22 @@
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:background="@color/bg_card"
-                        android:padding="8dp"
+                        android:padding="10dp"
                         android:layout_marginHorizontal="2dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3 Cifras (+500x)"
-                            android:textColor="@color/text_muted"
-                            android:textSize="10sp" />
+                            android:textColor="@color/text_secondary"
+                            android:textStyle="bold"
+                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/tvKpiCentenas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="@color/primary_blue_light"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -529,21 +557,22 @@
                         android:layout_weight="1"
                         android:orientation="vertical"
                         android:background="@color/bg_card"
-                        android:padding="8dp"
+                        android:padding="10dp"
                         android:layout_marginStart="4dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Plenos 4C"
-                            android:textColor="@color/text_muted"
-                            android:textSize="10sp" />
+                            android:textColor="@color/text_secondary"
+                            android:textStyle="bold"
+                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/tvKpiPlenos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="@color/accent_gold"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>

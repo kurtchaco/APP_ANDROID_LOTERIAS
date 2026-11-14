@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="Lunes 02/11 ➔ Martes 03/11"
                     android:textColor="@color/text_primary"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -48,8 +48,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 sorteos disputados"
-                    android:textColor="@color/text_muted"
-                    android:textSize="11sp" />
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <TextView
@@ -57,12 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🎯 2 Aciertos"
-                android:textSize="11sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="@color/accent_green"
                 android:background="@drawable/bg_badge_success"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp" />
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp" />
         </LinearLayout>
 
         <!-- Los 7 números predichos de este día -->
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="✨ Los 7 Números Predichos:"
             android:textColor="@color/accent_gold"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:layout_marginBottom="4dp" />
 
@@ -82,9 +82,11 @@
             android:text="#1: 7965 (🎯) • #2: 7377 • #3: 8595 • #4: 8623 • #5: 9887 • #6: 9946 • #7: 3840"
             android:textColor="@color/text_primary"
             android:fontFamily="monospace"
-            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp"
             android:background="@color/bg_card"
-            android:padding="8dp"
+            android:padding="10dp"
             android:layout_marginBottom="8dp" />
 
         <!-- Turnos extract details -->
@@ -92,8 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="🎲 Sorteos oficiales:"
-            android:textColor="@color/text_muted"
-            android:textSize="10sp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:layout_marginBottom="2dp" />
 
@@ -102,11 +104,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Previa: 7965 (🎯) • Primera: 1234 • Mat: 5678 • Vesp: 9012 • Noct: 3456"
-            android:textColor="@color/text_secondary"
+            android:textColor="@color/text_primary"
             android:fontFamily="monospace"
-            android:textSize="11sp"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp"
             android:background="@color/bg_card"
-            android:padding="8dp"
+            android:padding="10dp"
             android:layout_marginBottom="8dp" />
 
         <!-- Action: Ver en detalle -->
@@ -115,11 +118,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingVertical="6dp"
+            android:paddingVertical="8dp"
             android:background="@drawable/bg_pill_unselected"
             android:text="👆 Toca para cargar este día en la pantalla principal"
             android:textColor="@color/primary_blue_light"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
     </LinearLayout>

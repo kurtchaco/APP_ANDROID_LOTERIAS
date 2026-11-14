@@ -2,6 +2,39 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+
+def getGitVersionCode() {
+    if (project.hasProperty('versionCode')) {
+        return project.property('versionCode').toInteger()
+    }
+    if (System.getenv("VERSION_CODE")) {
+        return System.getenv("VERSION_CODE").toInteger()
+    }
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--count', 'HEAD'
+            standardOutput = stdout
+        }
+        return Math.max(stdout.toString().trim().toInteger(), 2)
+    } catch (Exception ignored) {
+        return 2
+    }
+}
+
+def getGitVersionName(int code) {
+    if (project.hasProperty('versionName')) {
+        return project.property('versionName')
+    }
+    if (System.getenv("VERSION_NAME")) {
+        return System.getenv("VERSION_NAME")
+    }
+    return "1.0.${code}"
+}
+
+def appVersionCode = getGitVersionCode()
+def appVersionName = getGitVersionName(appVersionCode)
+
 android {
     namespace 'com.loterias.app'
     compileSdk 33
@@ -9,8 +42,8 @@ android {
         applicationId "com.loterias.app"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
     }
     buildTypes {
         release {

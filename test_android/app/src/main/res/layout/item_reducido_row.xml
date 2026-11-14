@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="14dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,11 +25,11 @@
             <!-- Rank Badge -->
             <TextView
                 android:id="@+id/tvReducidoRank"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:gravity="center"
                 android:text="#1"
-                android:textSize="12sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:background="@drawable/bg_pill_selected"
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7965"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:fontFamily="monospace"
                 android:textColor="@color/accent_gold"
@@ -60,11 +60,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ambo: 65"
-                    android:textSize="11sp"
-                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
                     android:background="@drawable/bg_pill_unselected"
-                    android:paddingHorizontal="6dp"
-                    android:paddingVertical="3dp"
+                    android:paddingHorizontal="9dp"
+                    android:paddingVertical="5dp"
                     android:layout_marginEnd="6dp" />
 
                 <TextView
@@ -72,11 +73,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="C: 965"
-                    android:textSize="11sp"
-                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
                     android:background="@drawable/bg_pill_unselected"
-                    android:paddingHorizontal="6dp"
-                    android:paddingVertical="3dp" />
+                    android:paddingHorizontal="9dp"
+                    android:paddingVertical="5dp" />
             </LinearLayout>
 
             <!-- Score / Rank Score -->
@@ -85,8 +87,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="110 pts"
-                android:textSize="11sp"
-                android:textColor="@color/text_muted" />
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_secondary" />
         </LinearLayout>
 
         <!-- Hit Result Badge (When drawn and hit) -->
@@ -94,13 +97,13 @@
             android:id="@+id/tvReducidoHitBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="3dp"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:text="🏆 ¡Pleno 4C! (+3.500x)"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:background="@drawable/bg_badge_gold"
             android:visibility="gone" />
 

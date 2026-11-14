@@ -11,6 +11,10 @@ class ReducidosAdapter(
     private var items: List<ReducidoNumero>
 ) : RecyclerView.Adapter<ReducidosAdapter.ViewHolder>() {
 
+    var isLupaMode: Boolean = false
+        private set
+    private val zoomedPositions = mutableSetOf<Int>()
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvRank: TextView = view.findViewById(R.id.tvReducidoRank)
         val tvNumero: TextView = view.findViewById(R.id.tvReducidoNumero)
@@ -30,11 +34,37 @@ class ReducidosAdapter(
         val item = items[position]
         val context = holder.itemView.context
 
+        val amboDisplay = item.ambo.ifEmpty {
+            if (item.numero.length >= 2) item.numero.takeLast(2) else "--"
+        }
+        val centenaDisplay = item.centena.ifEmpty {
+            if (item.numero.length >= 3) item.numero.takeLast(3) else "---"
+        }
+
         holder.tvRank.text = "#${item.rank}"
         holder.tvNumero.text = item.numero
-        holder.tvAmbo.text = "Ambo: ${item.ambo}"
-        holder.tvCentena.text = "C: ${item.centena}"
+        holder.tvAmbo.text = "Ambo: $amboDisplay"
+        holder.tvCentena.text = "C: $centenaDisplay"
         holder.tvScore.text = item.score
+
+        val zoomed = isLupaMode || zoomedPositions.contains(position)
+        holder.tvNumero.textSize = if (zoomed) 38f else 30f
+        holder.tvAmbo.textSize = if (zoomed) 16f else 14f
+        holder.tvCentena.textSize = if (zoomed) 16f else 14f
+        holder.tvScore.textSize = if (zoomed) 15f else 13f
+        holder.tvRank.textSize = if (zoomed) 17f else 15f
+
+        holder.itemView.setOnClickListener {
+            val adapterPos = holder.adapterPosition
+            if (adapterPos != RecyclerView.NO_POSITION) {
+                if (zoomedPositions.contains(adapterPos)) {
+                    zoomedPositions.remove(adapterPos)
+                } else {
+                    zoomedPositions.add(adapterPos)
+                }
+                notifyItemChanged(adapterPos)
+            }
+        }
 
         if (position == 0) {
             holder.tvNumero.setTextColor(ContextCompat.getColor(context, R.color.accent_gold))
@@ -43,7 +73,7 @@ class ReducidosAdapter(
         } else {
             holder.tvNumero.setTextColor(ContextCompat.getColor(context, R.color.white))
             holder.tvRank.setBackgroundResource(R.drawable.bg_pill_unselected)
-            holder.tvRank.setTextColor(ContextCompat.getColor(context, R.color.text_secondary))
+            holder.tvRank.setTextColor(ContextCompat.getColor(context, R.color.text_primary))
         }
 
         // Hit Result Badges
@@ -74,6 +104,15 @@ class ReducidosAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun toggleLupaMode(): Boolean {
+        isLupaMode = !isLupaMode
+        if (!isLupaMode) {
+            zoomedPositions.clear()
+        }
+        notifyDataSetChanged()
+        return isLupaMode
+    }
 
     fun updateData(newItems: List<ReducidoNumero>) {
         this.items = newItems

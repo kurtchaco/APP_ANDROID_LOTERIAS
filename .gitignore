@@ -43,3 +43,9 @@ captures/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Keystores y firmas privadas
+*.p12
+*.jks
+*.keystore
+!fdroid_config/keystore.p12
