@@ -1,0 +1,46 @@
+{
+  "METADATA_VERSION": 20002,
+  "allow_disabled_algorithms": false,
+  "loterias.apk": {
+    "hash": "1563c43a5de110037c5e81837b5884d01c39f186a89cd34e89502b565eea6526",
+    "hashType": "sha256",
+    "uses-permission": [
+      [
+        "android.permission.INTERNET",
+        null
+      ],
+      [
+        "com.loterias.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        null
+      ]
+    ],
+    "uses-permission-sdk-23": [],
+    "features": [],
+    "icons_src": {},
+    "icons": {},
+    "antiFeatures": {},
+    "packageName": "com.loterias.app",
+    "versionCode": 9,
+    "name": "Loter\u00edas y Quinielas",
+    "versionName": "1.0.9",
+    "minSdkVersion": 24,
+    "targetSdkVersion": 33,
+    "sig": "ed751fe756df8c68017a2cc737506ba7",
+    "signer": "d7931100f932dedeb3e8027a81e9292275cfe0a240664efd7dad69d611d285a8",
+    "size": 6711206,
+    "apkName": "loterias.apk",
+    "added": 1794625586.822429
+  },
+  "icon.png": {
+    "name": "icon",
+    "apkName": "icon.png",
+    "hash": "a37c444340651b058869358229c8550fcf29846a58437bf7f268232763934893",
+    "hashType": "sha256",
+    "ipfsCIDv1": null,
+    "versionCode": 0,
+    "versionName": "a37c444",
+    "packageName": "a37c444340651b058869358229c8550fcf29846a58437bf7f268232763934893",
+    "size": 115213,
+    "added": 1794625586.823174
+  }
+}
